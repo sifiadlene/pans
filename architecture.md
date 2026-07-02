@@ -102,6 +102,12 @@ flowchart TB
   class entra,kv sec
 ```
 
+## Search workflow diagram
+
+The workflow below is a simple UML activity-style diagram that expands the routing and retrieval path from initial query through optional deep analysis. It keeps the user PAN selection step and makes the parallel PAN hybrid-search plus RRF fusion stage explicit.
+
+![Search Workflow](search-workflow.png)
+
 ## Request flow
 
 1. The user submits a query through the web or chat frontend.
@@ -111,14 +117,15 @@ flowchart TB
 5. The router returns the top 3 PAN matches.
 6. The user selects one PAN or chooses all of them.
 7. In parallel, the frontend sends the same authenticated query to the Viva Engage Processor.
-8. The orchestrator queries the domain indexes associated with the selected PAN or PANs.
-9. The synthesizer merges and summarizes the retrieved PAN results.
-10. The chat model prepares the final grounded response and the frontend renders it to the user.
-11. The frontend asks whether the user wants deep analysis on one or more cited documents and captures the user choice.
-12. If the user answers yes, the frontend sends the selected cited documents to the orchestrator for deep analysis.
-13. The orchestrator runs Azure Content Understanding Agentic Mode on the selected cited documents and returns a deep-analysis response to the frontend.
-14. The Viva Engage Processor independently returns a Viva Engage response to the frontend.
-15. The chat app presents both response streams: final or deep-analysis response and Viva Engage response.
+8. The orchestrator runs hybrid search on the selected PAN domain indexes in parallel.
+9. The orchestrator fuses the parallel PAN results with Reciprocal Rank Fusion (RRF).
+10. The synthesizer merges and summarizes the RRF-fused PAN results.
+11. The chat model prepares the final grounded response and the frontend renders it to the user.
+12. The frontend asks whether the user wants deep analysis on one or more cited documents and captures the user choice.
+13. If the user answers yes, the frontend sends the selected cited documents to the orchestrator for deep analysis.
+14. The orchestrator runs Azure Content Understanding Agentic Mode on the selected cited documents and returns a deep-analysis response to the frontend.
+15. The Viva Engage Processor independently returns a Viva Engage response to the frontend.
+16. The chat app presents both response streams: final or deep-analysis response and Viva Engage response.
 
 ## Component responsibilities
 
@@ -133,7 +140,7 @@ flowchart TB
 | Semantic Router | Uses Azure AI Search hybrid search with semantic reranking to return the top 3 PAN matches |
 | Semantic Router Index | Stores metadata and embeddings for all PAN domain indexes |
 | PAN Domain Indexes | Store the searchable content for each PAN |
-| Result Synthesizer | Merges the retrieved results and produces a concise summary |
+| Result Synthesizer | Merges and summarizes RRF-fused PAN retrieval results |
 | Chat Model | Produces the final grounded response text |
 | Entra ID + Managed Identity | Authenticate users and authorize service-to-service calls |
 | Key Vault | Stores secrets and keys |
@@ -145,6 +152,7 @@ flowchart TB
 * The semantic router index holds metadata for all PAN domain indexes, which keeps the shortlist focused and searchable.
 * Hybrid search with semantic reranking gives the router both lexical precision and semantic recall.
 * Fan-out is deferred until the user selects a PAN or chooses all, which avoids unnecessary retrieval work.
+* After user selection, hybrid search runs in parallel across selected PAN indexes and the orchestrator fuses the result sets with Reciprocal Rank Fusion (RRF).
 * Every authenticated query is dispatched in parallel to the Query Orchestrator branch and the Viva Engage Processor branch.
 * After the final response is rendered, the user can optionally select one or more cited documents for deeper analysis.
 * The deep-analysis branch only executes when the user answers yes, and it is processed through Azure Content Understanding Agentic Mode.
