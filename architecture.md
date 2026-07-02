@@ -7,7 +7,7 @@ ms.topic: concept
 
 ## Overview
 
-An Azure AI Foundry application orchestrates the request. A user submits a query, a model extracts the intent, and the intent is converted into embeddings. Azure AI Search then performs hybrid search with semantic reranking against a semantic router index that represents all PAN domain indexes. The router returns the top 3 PAN matches, the user chooses one PAN or all of them, and the system queries the associated domain indexes. The results are merged, summarized, and returned to the user.
+An Azure AI Foundry application orchestrates the request. A user submits a query, a model extracts the intent, and the intent is converted into embeddings. Azure AI Search then performs hybrid search with semantic reranking against a semantic router index that represents all PAN domain indexes. The router returns the top 3 PAN matches, the user chooses one PAN or all of them, and the system queries the associated domain indexes. The results are merged, summarized, and returned to the user. After the final response is rendered, the frontend offers an optional deep analysis action on one or more cited documents. If the user answers yes, the orchestrator invokes Azure Content Understanding Agentic Mode and returns a deep-analysis response.
 
 Microsoft Entra ID secures user and service access, Key Vault stores residual secrets, and Application Insights captures telemetry.
 
@@ -29,6 +29,7 @@ flowchart TB
   subgraph foundry["Azure AI Foundry"]
     orch["Query Orchestrator<br/>(planning + tool calls)"]
     router["Semantic Router<br/>(top 3 PAN matches)"]
+    cu["Azure Content Understanding<br/>Agentic Mode"]
     synth["Result Synthesizer<br/>(merge + summarize)"]
   end
 
@@ -72,7 +73,14 @@ flowchart TB
   synth -->|"4 merge + summarize"| chat
   chat --> synth
   synth -->|"grounded answer"| web
-  web --> user
+  web -->|"render final response"| user
+  web -->|"offer deep analysis on cited documents"| user
+  user -->|"select one or more cited documents or skip"| web
+  web -->|"if yes: deep analysis request"| orch
+  orch -->|"5 deep analysis on selected cited documents"| cu
+  cu -->|"analysis output"| synth
+  synth -->|"deep analysis response"| web
+  web -->|"deep analysis result"| user
 
   %% cross-cutting
   foundry -. "managed identity" .-> entra
@@ -84,7 +92,7 @@ flowchart TB
   classDef azure fill:#0078D4,stroke:#004578,color:#fff
   classDef data fill:#107C10,stroke:#0B4F0B,color:#fff
   classDef sec fill:#5C2D91,stroke:#3B1C5E,color:#fff
-  class web,orch,router,synth,intent,embed,chat,appi azure
+  class web,orch,router,cu,synth,intent,embed,chat,appi azure
   class catalog,idx1,idx2,idxn data
   class entra,kv sec
 ```
@@ -100,13 +108,17 @@ flowchart TB
 7. The orchestrator queries the domain indexes associated with the selected PAN or PANs.
 8. The synthesizer merges and summarizes the retrieved results.
 9. The chat model prepares the final grounded response and the frontend renders it to the user.
+10. The frontend asks whether the user wants deep analysis on one or more cited documents and captures the user choice.
+11. If the user answers yes, the frontend sends the selected cited documents to the orchestrator for deep analysis.
+12. The orchestrator runs Azure Content Understanding Agentic Mode on the selected cited documents and returns a deep-analysis response to the frontend.
 
 ## Component responsibilities
 
 | Component | Responsibility |
 | --- | --- |
-| Web / Chat App | Accepts the query, presents the top 3 PAN matches, collects the selection, and renders the final answer |
+| Web / Chat App | Accepts the query, presents the top 3 PAN matches, collects the selection, renders the final answer, and offers optional deep analysis on cited documents |
 | Query Orchestrator | Coordinates intent extraction, routing, selection handling, and retrieval |
+| Azure Content Understanding Agentic Mode | Performs deep analysis on user-selected cited documents when the user answers yes |
 | Intent Extraction Model | Infers the user intent from the incoming query |
 | Embedding Model | Converts the extracted intent into embeddings for semantic routing |
 | Semantic Router | Uses Azure AI Search hybrid search with semantic reranking to return the top 3 PAN matches |
@@ -124,6 +136,8 @@ flowchart TB
 * The semantic router index holds metadata for all PAN domain indexes, which keeps the shortlist focused and searchable.
 * Hybrid search with semantic reranking gives the router both lexical precision and semantic recall.
 * Fan-out is deferred until the user selects a PAN or chooses all, which avoids unnecessary retrieval work.
+* After the final response is rendered, the user can optionally select one or more cited documents for deeper analysis.
+* The deep-analysis branch only executes when the user answers yes, and it is processed through Azure Content Understanding Agentic Mode.
 * Managed identity remains the default for Foundry-to-Azure communication.
 
 ## Open considerations
@@ -131,3 +145,5 @@ flowchart TB
 * Define the exact shape of the intent schema so routing and telemetry use the same fields.
 * Decide whether the UI should show short descriptions for each PAN match or only the PAN names.
 * Confirm the merge strategy for the all selection path when more than one PAN is queried.
+* Confirm how the optional deep-analysis action should be surfaced in the UI when multiple cited documents are available.
+* Define timeout and fallback behavior if Azure Content Understanding Agentic Mode does not complete in the expected latency window.
