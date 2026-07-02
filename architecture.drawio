@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e">
     <diagram name="Agentic Router Architecture" id="agentic-router">
-        <mxGraphModel dx="587" dy="471" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1320" pageHeight="940" math="0" shadow="0">
+        <mxGraphModel dx="316" dy="131" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1320" pageHeight="940" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -10,7 +10,7 @@
                 <mxCell id="zClient" value="Client Tier" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#EBF3FC;strokeColor=#0078D4;verticalAlign=top;align=left;spacingLeft=10;spacingTop=6;fontStyle=1;fontColor=#004578;fontSize=12;" parent="1" vertex="1">
                     <mxGeometry x="600" y="110" width="240" height="110" as="geometry"/>
                 </mxCell>
-                <mxCell id="web" value="Web / Chat App&#xa;(PAN picker)" style="sketch=0;outlineConnect=0;fontColor=#23272E;fillColor=none;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=11;aspect=fixed;shape=image;image=img/lib/azure2/app_services/App_Services.svg;" parent="1" vertex="1">
+                <mxCell id="web" value="&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;Web / Chat App&lt;br&gt;(PAN picker)" style="sketch=0;outlineConnect=0;fontColor=#23272E;fillColor=none;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=11;aspect=fixed;shape=image;image=img/lib/azure2/app_services/App_Services.svg;" parent="1" vertex="1">
                     <mxGeometry x="685" y="140" width="60" height="56" as="geometry"/>
                 </mxCell>
                 <mxCell id="zId" value="Identity &amp; Security" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#F4EEFA;strokeColor=#5C2D91;verticalAlign=top;align=left;spacingLeft=10;spacingTop=6;fontStyle=1;fontColor=#3B1C5E;fontSize=12;" parent="1" vertex="1">
@@ -80,35 +80,38 @@
                         </Array>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="e_web_orch" value="user query / selected PAN(s)" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontSize=10;strokeColor=#6B6B6B;endArrow=block;exitX=0.25;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="web" target="orch" edge="1">
+                <mxCell id="e_web_orch" value="user query / selected PAN(s)" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontSize=10;strokeColor=#6B6B6B;endArrow=block;entryX=0.5;entryY=0;entryDx=0;entryDy=0;exitX=0;exitY=0.75;exitDx=0;exitDy=0;" parent="1" source="web" target="orch" edge="1">
                     <mxGeometry relative="1" as="geometry">
                         <Array as="points">
+                            <mxPoint x="685" y="196"/>
+                            <mxPoint x="594" y="196"/>
+                            <mxPoint x="594" y="240"/>
                             <mxPoint x="450" y="240"/>
                         </Array>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="e_orch_embed" value="1 extract intent" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontSize=10;strokeColor=#6B6B6B;endArrow=block;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="orch" target="intent" edge="1">
+                <mxCell id="e_orch_embed" value="1 extract intent" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontSize=10;strokeColor=#6B6B6B;endArrow=block;exitX=0.75;exitY=0;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="orch" target="intent" edge="1">
                     <mxGeometry relative="1" as="geometry">
                         <Array as="points">
-                            <mxPoint x="450" y="335"/>
-                            <mxPoint x="575" y="335"/>
-                            <mxPoint x="575" y="373"/>
+                            <mxPoint x="464" y="380"/>
+                            <mxPoint x="464" y="335"/>
+                            <mxPoint x="545" y="335"/>
                         </Array>
                     </mxGeometry>
                 </mxCell>
                 <mxCell id="e_intent_embed" value="intent" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontSize=10;strokeColor=#6B6B6B;dashed=1;endArrow=open;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" parent="1" source="intent" target="embed" edge="1">
                     <mxGeometry relative="1" as="geometry">
                         <Array as="points">
-                            <mxPoint x="615" y="360"/>
-                            <mxPoint x="1030" y="360"/>
+                            <mxPoint x="575" y="353"/>
+                            <mxPoint x="1080" y="353"/>
                         </Array>
                     </mxGeometry>
                 </mxCell>
                 <mxCell id="e_embed_router" value="query vector" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontSize=10;strokeColor=#6B6B6B;endArrow=block;exitX=0;exitY=0.8;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="embed" target="router" edge="1">
                     <mxGeometry relative="1" as="geometry">
                         <Array as="points">
-                            <mxPoint x="1020" y="362"/>
-                            <mxPoint x="650" y="362"/>
+                            <mxPoint x="1050" y="364"/>
+                            <mxPoint x="735" y="364"/>
                         </Array>
                     </mxGeometry>
                 </mxCell>
@@ -120,21 +123,22 @@
                         </Array>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="e_catalog_router" value="top 3 PAN matches" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontSize=10;strokeColor=#6B6B6B;endArrow=block;exitX=0.7;exitY=0;exitDx=0;exitDy=0;entryX=0.35;entryY=1;entryDx=0;entryDy=0;" parent="1" source="catalog" target="web" edge="1">
+                <mxCell id="e_catalog_router" value="top 3 PAN matches" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontSize=10;strokeColor=#6B6B6B;endArrow=block;exitX=0.7;exitY=0;exitDx=0;exitDy=0;" parent="1" source="catalog" target="web" edge="1">
                     <mxGeometry relative="1" as="geometry">
                         <Array as="points">
                             <mxPoint x="442" y="540"/>
-                            <mxPoint x="702" y="300"/>
+                            <mxPoint x="702" y="540"/>
                         </Array>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="e_router_chat" value="show top 3 PAN matches" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontSize=10;strokeColor=#6B6B6B;endArrow=block;exitX=0.8;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="router" target="web" edge="1">
-                    <mxGeometry relative="1" as="geometry">
+                <mxCell id="e_router_chat" value="show top 3 PAN matches" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontSize=10;strokeColor=#6B6B6B;endArrow=block;exitX=0.8;exitY=1;exitDx=0;exitDy=0;entryX=1;entryY=0.75;entryDx=0;entryDy=0;" parent="1" source="router" target="web" edge="1">
+                    <mxGeometry x="0.0899" y="1" relative="1" as="geometry">
                         <Array as="points">
-                            <mxPoint x="765" y="478"/>
-                            <mxPoint x="740" y="478"/>
-                            <mxPoint x="740" y="200"/>
+                            <mxPoint x="753" y="478"/>
+                            <mxPoint x="769" y="478"/>
+                            <mxPoint x="769" y="182"/>
                         </Array>
+                        <mxPoint as="offset"/>
                     </mxGeometry>
                 </mxCell>
                 <mxCell id="e_router_idx" value="3 query selected PAN indexes" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontSize=10;strokeColor=#6B6B6B;endArrow=block;exitX=0.35;exitY=1;exitDx=0;exitDy=0;entryX=0.3;entryY=0;entryDx=0;entryDy=0;" parent="1" source="orch" target="zIndexes" edge="1">
@@ -171,8 +175,7 @@
                 <mxCell id="e_synth_web" value="final answer" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontSize=10;strokeColor=#6B6B6B;endArrow=block;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="synth" target="web" edge="1">
                     <mxGeometry relative="1" as="geometry">
                         <Array as="points">
-                            <mxPoint x="850" y="250"/>
-                            <mxPoint x="745" y="250"/>
+                            <mxPoint x="850" y="168"/>
                         </Array>
                     </mxGeometry>
                 </mxCell>
