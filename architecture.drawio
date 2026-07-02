@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e">
     <diagram name="Agentic Router Architecture" id="agentic-router">
-        <mxGraphModel dx="316" dy="131" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1320" pageHeight="940" math="0" shadow="0">
+        <mxGraphModel dx="1862" dy="856" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1320" pageHeight="940" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -223,7 +223,7 @@
         </mxGraphModel>
     </diagram>
     <diagram name="Sequence Flow" id="sequence-flow">
-        <mxGraphModel dx="248" dy="110" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1760" pageHeight="980" math="0" shadow="0">
+        <mxGraphModel dx="706" dy="325" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1760" pageHeight="980" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -332,7 +332,12 @@
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
                 <mxCell id="seq_m12" value="Results" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontSize=10;strokeColor=#6B6B6B;dashed=1;endArrow=open;exitX=0;exitY=0.616;entryX=1;entryY=0.616;" parent="1" source="seq_domain_line" target="seq_synth_line" edge="1">
-                    <mxGeometry relative="1" as="geometry"/>
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="1209" y="590"/>
+                            <mxPoint x="1382" y="590"/>
+                        </Array>
+                    </mxGeometry>
                 </mxCell>
                 <mxCell id="seq_m13" value="Merge and summarize" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontSize=10;strokeColor=#6B6B6B;endArrow=block;exitX=1;exitY=0.668;entryX=0;entryY=0.668;" parent="1" source="seq_synth_line" target="seq_chat_line" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
@@ -340,15 +345,14 @@
                 <mxCell id="seq_m14" value="Response draft" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontSize=10;strokeColor=#6B6B6B;dashed=1;endArrow=open;exitX=0;exitY=0.721;entryX=1;entryY=0.721;" parent="1" source="seq_chat_line" target="seq_synth_line" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="seq_m15" value="Final answer" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontSize=10;strokeColor=#6B6B6B;endArrow=block;exitX=1;exitY=0.774;entryX=0.5;entryY=0.864;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="seq_synth_line" target="seq_web_line" edge="1">
+                <mxCell id="seq_m15" value="Final answer" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontSize=10;strokeColor=#6B6B6B;endArrow=block;entryX=0.5;entryY=0.864;entryDx=0;entryDy=0;entryPerimeter=0;exitX=0;exitY=0.864;exitDx=0;exitDy=0;exitPerimeter=0;" parent="1" source="seq_synth_line" target="seq_web_line" edge="1">
                     <mxGeometry relative="1" as="geometry">
                         <mxPoint x="247" y="779" as="targetPoint"/>
                         <Array as="points">
-                            <mxPoint x="1392" y="710"/>
-                            <mxPoint x="1392" y="872"/>
-                            <mxPoint x="189" y="872"/>
-                            <mxPoint x="189" y="779"/>
+                            <mxPoint x="818" y="779"/>
+                            <mxPoint x="244" y="779"/>
                         </Array>
+                        <mxPoint x="1350" y="771" as="sourcePoint"/>
                     </mxGeometry>
                 </mxCell>
                 <mxCell id="seq_m16" value="Render response" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontSize=10;strokeColor=#6B6B6B;dashed=1;endArrow=open;exitX=0;exitY=0.826;entryX=1;entryY=0.826;" parent="1" source="seq_web_line" target="seq_user_line" edge="1">
