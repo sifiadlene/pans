@@ -1,0 +1,8 @@
+{
+    "chat.tools.terminal.autoApprove": {
+        "/^cd /home/dev/projects/pans && node render\\.js$/": {
+            "approve": true,
+            "matchCommandLine": true
+        }
+    }
+}

@@ -10,9 +10,11 @@ Use this guidance when updating the PAN routing architecture artifacts.
 ## Scope
 
 * Keep [architecture.md](../../architecture.md) and [architecture.drawio](../../architecture.drawio) aligned.
+* Every diagram tab in [architecture.drawio](../../architecture.drawio) must have a corresponding rendered image file (e.g. `<diagram-name>.png`).
 * Treat [architecture.png](../../architecture.png) as the rendered preview for the "Agentic Router Architecture" diagram.
 * Treat [architecture-sequence.png](../../architecture-sequence.png) as the rendered preview for the "Sequence Flow" diagram.
-* Use [render.js](../../render.js) to regenerate both previews after diagram edits.
+* When a new diagram tab is added, a matching output image file must also be produced and committed.
+* Use [render.js](../../render.js) to regenerate all diagram images after draw.io edits.
 
 ## Conventions
 
@@ -26,13 +28,15 @@ Use this guidance when updating the PAN routing architecture artifacts.
 ## Required Workflow
 
 1. Edit [architecture.md](../../architecture.md) and [architecture.drawio](../../architecture.drawio) together when the architecture changes.
-2. Regenerate [architecture.png](../../architecture.png) and [architecture-sequence.png](../../architecture-sequence.png) with [render.js](../../render.js) after draw.io changes.
-3. Verify that both rendered previews match the draw.io source before finishing.
-4. Avoid introducing terminology in one artifact that is not reflected in the other.
+2. Run `node render.js` after any draw.io change to regenerate image files for **all** diagram tabs.
+3. When adding a new diagram tab, ensure [render.js](../../render.js) is updated to export that tab to a named `.png` file.
+4. Verify that every rendered image matches its draw.io source tab before finishing.
+5. Avoid introducing terminology in one artifact that is not reflected in the other.
 
 ## Validation
 
 * Run `node render.js` after diagram changes.
-* Review both regenerated previews for label overlap and flow correctness.
+* Confirm an image file exists for every diagram tab in [architecture.drawio](../../architecture.drawio).
+* Review all regenerated images for label overlap and flow correctness.
 * If the diagram changes, confirm the sequence diagram still tells the same story as the markdown request flow.
 * Confirm sequence arrows remain visually flat/linear in [architecture-sequence.png](../../architecture-sequence.png).

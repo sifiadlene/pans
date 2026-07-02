@@ -15,11 +15,13 @@ const { chromium } = require('playwright-core');
     diagramsByName.set(nameMatch[1], diagramXml);
   }
 
-  const architectureDiagram = diagramsByName.get('Agentic Router Architecture');
-  const sequenceDiagram = diagramsByName.get('Sequence Flow');
+  // Derive output filename from diagram name: lower-kebab-case + .png
+  function diagramNameToFile(name) {
+    return name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') + '.png';
+  }
 
-  if (!architectureDiagram || !sequenceDiagram) {
-    throw new Error('Expected both "Agentic Router Architecture" and "Sequence Flow" diagrams in architecture.drawio');
+  if (diagramsByName.size === 0) {
+    throw new Error('No named <diagram> elements found in architecture.drawio');
   }
 
   const browser = await chromium.launch({
@@ -46,16 +48,20 @@ const { chromium } = require('playwright-core');
       // eslint-disable-next-line no-undef
       GraphViewer.processElements();
     }, xmlB64);
-    await page.waitForTimeout(4000);
+    await page.waitForTimeout(8000);
 
     const el = await page.$('.mxgraph');
     await (el || page).screenshot({ path: outputPath });
     await page.close();
   }
 
-  await renderDiagram(architectureDiagram, 'architecture.png');
-  await renderDiagram(sequenceDiagram, 'architecture-sequence.png');
+  for (const [name, diagramXml] of diagramsByName) {
+    const outputPath = diagramNameToFile(name);
+    await renderDiagram(diagramXml, outputPath);
+  }
 
   await browser.close();
-  console.log('done: architecture.png, architecture-sequence.png');
+
+  const outputFiles = [...diagramsByName.keys()].map(diagramNameToFile);
+  console.log('done:', outputFiles.join(', '));
 })().catch(e => { console.error(e); process.exit(1); });
