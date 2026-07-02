@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e">
     <diagram name="Agentic Router Architecture" id="agentic-router">
-        <mxGraphModel dx="884" dy="953" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1320" pageHeight="940" math="0" shadow="0">
+        <mxGraphModel dx="437" dy="524" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1320" pageHeight="940" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -28,7 +28,7 @@
                 <mxCell id="orch" value="Orchestrator" style="sketch=0;outlineConnect=0;fontColor=#23272E;fillColor=none;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=11;aspect=fixed;shape=image;image=img/lib/azure2/ai_machine_learning/Bot_Services.svg;" parent="1" vertex="1">
                     <mxGeometry x="420" y="380" width="60" height="56" as="geometry"/>
                 </mxCell>
-                <mxCell id="viva" value="Viva Engage Processor" style="sketch=0;outlineConnect=0;fontColor=#23272E;fillColor=none;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=11;aspect=fixed;shape=image;image=img/lib/azure2/ai_machine_learning/Cognitive_Services.svg;" vertex="1" parent="1">
+                <mxCell id="viva" value="Viva Engage Processor" style="sketch=0;outlineConnect=0;fontColor=#23272E;fillColor=none;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=11;aspect=fixed;shape=image;image=img/lib/azure2/ai_machine_learning/Cognitive_Services.svg;" parent="1" vertex="1">
                     <mxGeometry x="630" y="440" width="60" height="56" as="geometry"/>
                 </mxCell>
                 <mxCell id="intent" value="Intent Model" style="sketch=0;outlineConnect=0;fontColor=#23272E;fillColor=none;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=11;aspect=fixed;shape=image;image=img/lib/azure2/ai_machine_learning/Machine_Learning.svg;" parent="1" vertex="1">
@@ -93,7 +93,7 @@
                         </Array>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="e_web_viva" value="authenticated query (parallel)" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontSize=10;strokeColor=#6B6B6B;endArrow=block;entryX=0.5;entryY=0;entryDx=0;entryDy=0;exitX=1;exitY=0.75;exitDx=0;exitDy=0;" edge="1" parent="1" source="web" target="viva">
+                <mxCell id="e_web_viva" value="authenticated query (parallel)" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontSize=10;strokeColor=#6B6B6B;endArrow=block;entryX=0.5;entryY=0;entryDx=0;entryDy=0;exitX=1;exitY=0.75;exitDx=0;exitDy=0;" parent="1" source="web" target="viva" edge="1">
                     <mxGeometry relative="1" as="geometry">
                         <Array as="points">
                             <mxPoint x="745" y="196"/>
@@ -191,7 +191,7 @@
                         </Array>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="e_viva_web" value="Viva Engage response" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontSize=10;strokeColor=#6B6B6B;endArrow=block;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.7;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="viva" target="web">
+                <mxCell id="e_viva_web" value="Viva Engage response" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontSize=10;strokeColor=#6B6B6B;endArrow=block;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.7;entryY=1;entryDx=0;entryDy=0;" parent="1" source="viva" target="web" edge="1">
                     <mxGeometry relative="1" as="geometry">
                         <Array as="points">
                             <mxPoint x="660" y="320"/>
@@ -243,7 +243,7 @@
         </mxGraphModel>
     </diagram>
     <diagram name="Sequence Flow" id="sequence-flow">
-        <mxGraphModel grid="0" page="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" pageScale="1" pageWidth="1960" pageHeight="980" math="0" shadow="0">
+        <mxGraphModel dx="598" dy="437" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1960" pageHeight="980" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -310,10 +310,10 @@
                 <mxCell id="seq_chat_line" value="" style="shape=rectangle;fillColor=#A6A6A6;strokeColor=#A6A6A6;rounded=0;html=1;" parent="1" vertex="1">
                     <mxGeometry x="1550" y="122" width="2" height="760" as="geometry"/>
                 </mxCell>
-                <mxCell id="seq_viva" value="Viva Engage Processor" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E6F4EA;strokeColor=#107C10;fontColor=#0B4F0B;fontStyle=1;align=center;verticalAlign=middle;fontSize=12;" vertex="1" parent="1">
+                <mxCell id="seq_viva" value="Viva Engage Processor" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E6F4EA;strokeColor=#107C10;fontColor=#0B4F0B;fontStyle=1;align=center;verticalAlign=middle;fontSize=12;" parent="1" vertex="1">
                     <mxGeometry x="1640" y="80" width="160" height="42" as="geometry"/>
                 </mxCell>
-                <mxCell id="seq_viva_line" value="" style="shape=rectangle;fillColor=#A6A6A6;strokeColor=#A6A6A6;rounded=0;html=1;" vertex="1" parent="1">
+                <mxCell id="seq_viva_line" value="" style="shape=rectangle;fillColor=#A6A6A6;strokeColor=#A6A6A6;rounded=0;html=1;" parent="1" vertex="1">
                     <mxGeometry x="1714" y="122" width="2" height="760" as="geometry"/>
                 </mxCell>
                 <mxCell id="seq_appi" value="Application Insights" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EBF3FC;strokeColor=#0078D4;fontColor=#004578;fontStyle=1;align=center;verticalAlign=middle;fontSize=12;" parent="1" vertex="1">
@@ -336,7 +336,7 @@
                 <mxCell id="seq_m4" value="Forward authenticated query" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontSize=10;strokeColor=#6B6B6B;endArrow=block;exitX=1;exitY=0.195;entryX=0;entryY=0.195;" parent="1" source="seq_web_line" target="seq_orch_line" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="seq_m4b" value="Forward authenticated query (parallel)" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontSize=10;strokeColor=#6B6B6B;endArrow=block;exitX=1;exitY=0.22;entryX=0;entryY=0.22;" edge="1" parent="1" source="seq_web_line" target="seq_viva_line">
+                <mxCell id="seq_m4b" value="Forward authenticated query (parallel)" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontSize=10;strokeColor=#6B6B6B;endArrow=block;exitX=1;exitY=0.22;entryX=0;entryY=0.22;" parent="1" source="seq_web_line" target="seq_viva_line" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
                 <mxCell id="seq_m5" value="Start trace/span" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontSize=10;strokeColor=#6B6B6B;dashed=1;endArrow=open;exitX=1;exitY=0.247;entryX=0;entryY=0.247;" parent="1" source="seq_orch_line" target="seq_appi_line" edge="1">
@@ -363,42 +363,53 @@
                         </Array>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="seq_m10" value="Top 3 PAN matches" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontSize=10;strokeColor=#6B6B6B;dashed=1;endArrow=open;entryX=0.139;entryY=0.51;entryDx=0;entryDy=0;entryPerimeter=0;exitX=1.537;exitY=0.505;exitDx=0;exitDy=0;exitPerimeter=0;" parent="1" source="seq_catalog_line" target="seq_router_line" edge="1">
+                <mxCell id="seq_m10" value="Top 3 PAN matches" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontSize=10;strokeColor=#6B6B6B;dashed=1;endArrow=open;entryX=0.139;entryY=0.51;entryDx=0;entryDy=0;entryPerimeter=0;exitX=1.537;exitY=0.505;exitDx=0;exitDy=0;exitPerimeter=0;" parent="1" edge="1">
                     <mxGeometry relative="1" as="geometry">
-                        <mxPoint x="849" y="510" as="sourcePoint"/>
-                        <mxPoint x="999" y="496" as="targetPoint"/>
+                        <mxPoint x="870.0740000000001" y="497.80000000000007" as="sourcePoint"/>
+                        <mxPoint x="1034.2779999999998" y="497.60000000000014" as="targetPoint"/>
                         <Array as="points">
-                            <mxPoint x="869" y="510"/>
-                            <mxPoint x="869" y="511"/>
-                            <mxPoint x="866" y="511"/>
-                            <mxPoint x="866" y="510"/>
+                            <mxPoint x="869" y="498"/>
+                            <mxPoint x="869" y="499"/>
+                            <mxPoint x="866" y="499"/>
+                            <mxPoint x="866" y="498"/>
                         </Array>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="seq_m11" value="Present top 3 PAN matches" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontSize=10;strokeColor=#6B6B6B;endArrow=block;exitX=0;exitY=0.563;entryX=1;entryY=0.563;" parent="1" source="seq_router_line" target="seq_web_line" edge="1">
-                    <mxGeometry relative="1" as="geometry"/>
-                </mxCell>
-                <mxCell id="seq_m12" value="User selects one PAN or all" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontSize=10;strokeColor=#6B6B6B;endArrow=block;exitX=1;exitY=0.616;entryX=0;entryY=0.616;" parent="1" source="seq_web_line" target="seq_orch_line" edge="1">
+                <mxCell id="seq_m11" value="Present top 3 PAN matches" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontSize=10;strokeColor=#6B6B6B;endArrow=block;exitX=0;exitY=0.563;entryX=1;entryY=0.563;" parent="1" edge="1">
                     <mxGeometry relative="1" as="geometry">
-                        <Array as="points">
-                            <mxPoint x="448" y="590"/>
-                        </Array>
+                        <mxPoint x="1034" y="527.8799999999978" as="sourcePoint"/>
+                        <mxPoint x="256" y="527.8800000000026" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="seq_m13" value="Query selected PAN indexes" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontSize=10;strokeColor=#6B6B6B;endArrow=block;exitX=1;exitY=0.668;entryX=0;entryY=0.668;" parent="1" source="seq_orch_line" target="seq_domain_line" edge="1">
-                    <mxGeometry relative="1" as="geometry"/>
-                </mxCell>
-                <mxCell id="seq_m14" value="Results" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontSize=10;strokeColor=#6B6B6B;dashed=1;endArrow=open;exitX=0;exitY=0.721;entryX=1;entryY=0.721;" parent="1" source="seq_domain_line" target="seq_synth_line" edge="1">
+                <mxCell id="seq_m12" value="User selects one PAN or all" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontSize=10;strokeColor=#6B6B6B;endArrow=block;exitX=1;exitY=0.616;entryX=0;entryY=0.616;" parent="1" edge="1">
                     <mxGeometry relative="1" as="geometry">
                         <Array as="points">
-                            <mxPoint x="1290" y="670"/>
-                            <mxPoint x="1352" y="669"/>
+                            <mxPoint x="448" y="563"/>
                         </Array>
+                        <mxPoint x="256" y="563.1600000000055" as="sourcePoint"/>
+                        <mxPoint x="554" y="563.1599999999962" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="seq_m15" value="Merge and summarize" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontSize=10;strokeColor=#6B6B6B;endArrow=block;exitX=1;exitY=0.774;entryX=0;entryY=0.774;" parent="1" source="seq_synth_line" target="seq_chat_line" edge="1">
+                <mxCell id="seq_m13" value="Query selected PAN indexes" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontSize=10;strokeColor=#6B6B6B;endArrow=block;exitX=1;exitY=0.668;entryX=0;entryY=0.668;" parent="1" edge="1">
                     <mxGeometry relative="1" as="geometry">
-                        <mxPoint x="1400" y="710" as="targetPoint"/>
+                        <mxPoint x="556" y="591.6799999999955" as="sourcePoint"/>
+                        <mxPoint x="1199.0000000000002" y="591.6800000000194" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="seq_m14" value="Results" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontSize=10;strokeColor=#6B6B6B;dashed=1;endArrow=open;exitX=0;exitY=0.721;entryX=1;entryY=0.721;" parent="1" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="1290" y="617"/>
+                            <mxPoint x="1352" y="616"/>
+                        </Array>
+                        <mxPoint x="1199.0000000000002" y="616.9600000000212" as="sourcePoint"/>
+                        <mxPoint x="1382" y="616.9599999999614" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="seq_m15" value="Merge and summarize" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontSize=10;strokeColor=#6B6B6B;endArrow=block;exitX=1;exitY=0.774;entryX=0;entryY=0.774;" parent="1" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="1550" y="641.2400000000268" as="targetPoint"/>
+                        <mxPoint x="1382" y="641.2399999999541" as="sourcePoint"/>
                     </mxGeometry>
                 </mxCell>
                 <mxCell id="seq_m16" value="Response draft" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontSize=10;strokeColor=#6B6B6B;dashed=1;endArrow=open;exitX=0;exitY=0.826;entryX=1;entryY=0.826;" parent="1" edge="1">
@@ -413,7 +424,7 @@
                         <mxPoint x="258" y="770.9999999999832" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="seq_m17b" value="Viva Engage response" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontSize=10;strokeColor=#6B6B6B;endArrow=block;exitX=0;exitY=0.905;entryX=1;entryY=0.905;" edge="1" parent="1" source="seq_viva_line" target="seq_web_line">
+                <mxCell id="seq_m17b" value="Viva Engage response" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontSize=10;strokeColor=#6B6B6B;endArrow=block;exitX=0;exitY=0.905;entryX=1;entryY=0.905;" parent="1" source="seq_viva_line" target="seq_web_line" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
                 <mxCell id="seq_m18" value="Render final response" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontSize=10;strokeColor=#6B6B6B;endArrow=block;exitX=0;exitY=0.932;entryX=1;entryY=0.932;" parent="1" edge="1">
@@ -423,46 +434,46 @@
                         <mxPoint as="offset"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="seq_m19" value="Offer deep analysis on cited documents" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontSize=10;strokeColor=#6B6B6B;endArrow=block;exitX=0;exitY=0.954;entryX=1;entryY=0.954;" edge="1" parent="1">
+                <mxCell id="seq_m19" value="Offer deep analysis on cited documents" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontSize=10;strokeColor=#6B6B6B;endArrow=block;exitX=0;exitY=0.954;entryX=1;entryY=0.954;" parent="1" edge="1">
                     <mxGeometry x="-0.557" y="-12" relative="1" as="geometry">
                         <mxPoint x="254" y="824.9999999999704" as="sourcePoint"/>
                         <mxPoint x="96" y="824.9999999999823" as="targetPoint"/>
                         <mxPoint as="offset"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="seq_m20" value="Select one or more cited documents or skip" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontSize=10;strokeColor=#6B6B6B;endArrow=block;exitX=1;exitY=0.976;entryX=0;entryY=0.976;" edge="1" parent="1">
+                <mxCell id="seq_m20" value="Select one or more cited documents or skip" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontSize=10;strokeColor=#6B6B6B;endArrow=block;exitX=1;exitY=0.976;entryX=0;entryY=0.976;" parent="1" edge="1">
                     <mxGeometry x="-0.2278" y="14" relative="1" as="geometry">
                         <mxPoint x="98" y="850" as="sourcePoint"/>
                         <mxPoint x="256" y="849.999999999987" as="targetPoint"/>
                         <mxPoint as="offset"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="seq_m21" value="If yes, request deep analysis" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontSize=10;strokeColor=#6B6B6B;endArrow=block;exitX=1;exitY=0.986;entryX=0;entryY=0.986;" edge="1" parent="1">
+                <mxCell id="seq_m21" value="If yes, request deep analysis" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontSize=10;strokeColor=#6B6B6B;endArrow=block;exitX=1;exitY=0.986;entryX=0;entryY=0.986;" parent="1" edge="1">
                     <mxGeometry relative="1" as="geometry">
                         <mxPoint x="254" y="861.9999999999983" as="sourcePoint"/>
                         <mxPoint x="552" y="861.9999999999847" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="seq_m22" value="Run Azure Content Understanding Agentic Mode" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontSize=10;strokeColor=#6B6B6B;endArrow=block;exitX=1;exitY=0.992;entryX=0;entryY=0.992;" edge="1" parent="1">
+                <mxCell id="seq_m22" value="Run Azure Content Understanding Agentic Mode" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontSize=10;strokeColor=#6B6B6B;endArrow=block;exitX=1;exitY=0.992;entryX=0;entryY=0.992;" parent="1" edge="1">
                     <mxGeometry relative="1" as="geometry">
                         <mxPoint x="556" y="868.0000000000024" as="sourcePoint"/>
                         <mxPoint x="1380" y="867.9999999999885" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="seq_m23" value="Deep analysis response" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontSize=10;strokeColor=#6B6B6B;endArrow=block;exitX=0;exitY=0.996;entryX=1;entryY=0.996;" edge="1" parent="1" source="seq_synth_line" target="seq_web_line">
+                <mxCell id="seq_m23" value="Deep analysis response" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontSize=10;strokeColor=#6B6B6B;endArrow=block;exitX=0;exitY=0.996;entryX=1;entryY=0.996;" parent="1" source="seq_synth_line" target="seq_web_line" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="seq_m24" value="Telemetry" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontSize=10;dashed=1;strokeColor=#6B6B6B;endArrow=open;exitX=1;exitY=0.998;entryX=0;entryY=0.998;" edge="1" parent="1" source="seq_synth_line" target="seq_appi_line">
+                <mxCell id="seq_m24" value="Telemetry" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontSize=10;dashed=1;strokeColor=#6B6B6B;endArrow=open;exitX=1;exitY=0.998;entryX=0;entryY=0.998;" parent="1" source="seq_synth_line" target="seq_appi_line" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="seq_m25" value="Telemetry" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontSize=10;dashed=1;strokeColor=#6B6B6B;endArrow=open;exitX=1;exitY=0.999;entryX=0;entryY=0.999;" edge="1" parent="1" source="seq_web_line" target="seq_appi_line">
+                <mxCell id="seq_m25" value="Telemetry" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontSize=10;dashed=1;strokeColor=#6B6B6B;endArrow=open;exitX=1;exitY=0.999;entryX=0;entryY=0.999;" parent="1" source="seq_web_line" target="seq_appi_line" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
             </root>
         </mxGraphModel>
     </diagram>
     <diagram name="Sequence Flow - Collapsed Orchestrator" id="sequence-flow-collapsed">
-        <mxGraphModel dx="526" dy="289" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1500" pageHeight="900" math="0" shadow="0">
+        <mxGraphModel dx="530" dy="524" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1500" pageHeight="900" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
