@@ -7,9 +7,7 @@ ms.topic: concept
 
 ## Overview
 
-An Azure AI Foundry application orchestrates the request. A user submits a query, a model extracts the intent, and the intent is converted into embeddings. Azure AI Search then performs hybrid search with semantic reranking against a semantic router index that represents all PAN domain indexes. The router returns the top 3 PAN matches, the user chooses one PAN or all of them, and the system queries the associated domain indexes. The results are merged, summarized, and returned to the user. After the final response is rendered, the frontend offers an optional deep analysis action on one or more cited documents. If the user answers yes, the orchestrator invokes Azure Content Understanding Agentic Mode and returns a deep-analysis response.
-
-For every authenticated query, the chat app also sends the same request in parallel to a Viva Engage Processor. The chat app receives two response streams: the final or deep-analysis response from the PAN orchestration branch and a separate Viva Engage response.
+An Azure AI Foundry application orchestrates the request. A user submits a query, a model extracts the intent, and the intent is converted into embeddings. Azure AI Search then performs hybrid search with semantic reranking against a semantic router index that represents all PAN domain indexes. The router returns the top 3 PAN matches, the user chooses one PAN or all of them, and the system dispatches parallel post-selection work: query selected PAN domain indexes and query Viva Engage communities through the Viva Engage Processor. The PAN branch is merged, summarized, and returned to the user. The Viva branch returns as a separate response stream. After the final response is rendered, the frontend offers an optional deep analysis action on one or more cited documents. If the user answers yes, the orchestrator invokes Azure Content Understanding Agentic Mode and returns a deep-analysis response.
 
 Microsoft Entra ID secures user and service access, Key Vault stores residual secrets, and Application Insights captures telemetry.
 
@@ -58,7 +56,6 @@ flowchart TB
   user --> web
   web -->|"authenticated session"| entra
   web -->|"authenticated query (parallel)"| orch
-  web -->|"authenticated query (parallel)"| viva
 
   orch -->|"1 extract intent"| intent
   intent -->|"intent"| embed
@@ -70,6 +67,7 @@ flowchart TB
   orch -->|"3 query selected PAN indexes"| idx1
   orch --> idx2
   orch --> idxn
+  orch -->|"3 query Viva Engage communities (parallel)"| viva
 
   idx1 -->|"results"| synth
   idx2 --> synth
@@ -104,7 +102,7 @@ flowchart TB
 
 ## Search workflow diagram
 
-The workflow below is a simple UML activity-style diagram that expands the routing and retrieval path from initial query through optional deep analysis. It keeps the user PAN selection step and makes the parallel PAN hybrid-search plus RRF fusion stage explicit.
+The workflow below is a simple UML activity-style diagram that expands the routing and retrieval path from initial query through optional deep analysis. It keeps the user PAN selection step and makes post-selection parallel execution explicit: PAN hybrid search fan-out plus Viva Engage community query in parallel.
 
 ![Search Workflow](search-workflow.png)
 
@@ -116,16 +114,17 @@ The workflow below is a simple UML activity-style diagram that expands the routi
 4. Azure AI Search hybrid search with semantic reranking runs against the semantic router index.
 5. The router returns the top 3 PAN matches.
 6. The user selects one PAN or chooses all of them.
-7. In parallel, the frontend sends the same authenticated query to the Viva Engage Processor.
+7. After selection, the orchestrator dispatches parallel work to PAN retrieval and Viva Engage retrieval.
 8. The orchestrator runs hybrid search on the selected PAN domain indexes in parallel.
-9. The orchestrator fuses the parallel PAN results with Reciprocal Rank Fusion (RRF).
-10. The synthesizer merges and summarizes the RRF-fused PAN results.
-11. The chat model prepares the final grounded response and the frontend renders it to the user.
-12. The frontend asks whether the user wants deep analysis on one or more cited documents and captures the user choice.
-13. If the user answers yes, the frontend sends the selected cited documents to the orchestrator for deep analysis.
-14. The orchestrator runs Azure Content Understanding Agentic Mode on the selected cited documents and returns a deep-analysis response to the frontend.
-15. The Viva Engage Processor independently returns a Viva Engage response to the frontend.
-16. The chat app presents both response streams: final or deep-analysis response and Viva Engage response.
+9. The Viva Engage Processor queries Viva Engage communities in parallel.
+10. The orchestrator fuses the parallel PAN results with Reciprocal Rank Fusion (RRF).
+11. The synthesizer merges and summarizes the RRF-fused PAN results.
+12. The chat model prepares the final grounded response and the frontend renders it to the user.
+13. The frontend asks whether the user wants deep analysis on one or more cited documents and captures the user choice.
+14. If the user answers yes, the frontend sends the selected cited documents to the orchestrator for deep analysis.
+15. The orchestrator runs Azure Content Understanding Agentic Mode on the selected cited documents and returns a deep-analysis response to the frontend.
+16. The Viva Engage Processor independently returns a Viva Engage response to the frontend.
+17. The chat app presents both response streams: final or deep-analysis response and Viva Engage response.
 
 ## Component responsibilities
 
@@ -133,7 +132,7 @@ The workflow below is a simple UML activity-style diagram that expands the routi
 | --- | --- |
 | Web / Chat App | Accepts the query, presents the top 3 PAN matches, collects the selection, renders the final answer, and offers optional deep analysis on cited documents |
 | Query Orchestrator | Coordinates intent extraction, routing, selection handling, PAN retrieval, and final or deep-analysis response generation |
-| Viva Engage Processor | Processes the same authenticated query in parallel and returns a separate Viva Engage response |
+| Viva Engage Processor | After PAN selection, queries Viva Engage communities in parallel and returns a separate Viva Engage response |
 | Azure Content Understanding Agentic Mode | Performs deep analysis on user-selected cited documents when the user answers yes |
 | Intent Extraction Model | Infers the user intent from the incoming query |
 | Embedding Model | Converts the extracted intent into embeddings for semantic routing |
@@ -153,7 +152,8 @@ The workflow below is a simple UML activity-style diagram that expands the routi
 * Hybrid search with semantic reranking gives the router both lexical precision and semantic recall.
 * Fan-out is deferred until the user selects a PAN or chooses all, which avoids unnecessary retrieval work.
 * After user selection, hybrid search runs in parallel across selected PAN indexes and the orchestrator fuses the result sets with Reciprocal Rank Fusion (RRF).
-* Every authenticated query is dispatched in parallel to the Query Orchestrator branch and the Viva Engage Processor branch.
+* The Viva Engage branch starts after the user selects one PAN or all and runs in parallel with selected PAN index retrieval.
+* The Viva Engage Processor queries Viva Engage communities in parallel and returns an independent response stream.
 * After the final response is rendered, the user can optionally select one or more cited documents for deeper analysis.
 * The deep-analysis branch only executes when the user answers yes, and it is processed through Azure Content Understanding Agentic Mode.
 * The frontend receives two separate outputs: PAN final or deep-analysis response and Viva Engage response.
